@@ -1,0 +1,67 @@
+#include "keymap_german.h"
+
+/*                KEY POSITIONS
+
+  ╭─────────────────────╮ ╭─────────────────────╮
+  │  Q   W   F   P   B  │ │  J   L   U   Y   ,  │
+  │  A   R   S   T   G  │ │  M   N   E   I   O  │
+  │  Z   X   C   D   V  │ │  K   H   ,   .   ?  │
+  ╰───────────╮ SPC ENT │ │ NUM SFT ╭───────────╯
+              ╰─────────╯ ╰─────────╯ */
+
+
+//game
+COMB(game1, DF(5), KC_Q, DE_Z, KC_B)
+COMB(gmount, KC_F11, KC_D, KC_V)
+
+//debug
+COMB(flash, QK_BOOT, KC_Q, DE_QUOT)
+COMB(console, DB_TOGG, KC_B, KC_J)
+
+//left hand horizontal
+COMB(esc, KC_ESC, KC_W, KC_F)
+COMB(ret, KC_ENT, KC_F, KC_P)
+COMB(mouse, DF(4), KC_W, DE_L)
+
+COMB(tab, LSA(KC_TAB), LALT_T(KC_R), LSFT_T(KC_S))
+COMB(repeat, QK_REP, LSFT_T(KC_S), LGUI_T(KC_T))
+
+COMB(cut, LCTL(KC_X), KC_X, KC_D)
+COMB(copy, LCTL(KC_INSERT), KC_C, KC_D)
+COMB(paste, LSFT(KC_INSERT), KC_X, KC_C)
+
+//right hand horizontal
+COMB(bspc, KC_BSPC, KC_L, KC_U)
+COMB(del, KC_DEL, KC_U, DE_Y)
+
+COMB(lpar, DE_LPRN, LCTL_T(KC_N), RSFT_T(KC_E))
+COMB(rpar, DE_RPRN, RSFT_T(KC_E), LALT_T(KC_I))
+COMB(lt, DE_LABK, LCTL_T(KC_N), RSFT_T(KC_E))
+COMB(gt, DE_RABK, RSFT_T(KC_E), LALT_T(KC_I))
+
+COMB(lbkt, DE_LCBR, KC_H, DE_COMM)
+COMB(rbkt, DE_RCBR, DE_COMM, DE_DOT)
+COMB(lbrc, DE_LBRC, KC_H, DE_COMM)
+COMB(rbrc, DE_RBRC, DE_COMM, DE_DOT)
+
+//left hand vertical
+COMB(at, DE_AT, KC_W, LALT_T(KC_R))
+COMB(hash, DE_HASH, KC_F, LSFT_T(KC_S))
+COMB(dollar, DE_DLR, KC_P, LCTL_T(KC_T))
+COMB(percent, DE_PERC, KC_B, KC_G)
+
+SUBS(grave, "`", LALT_T(KC_R), KC_X)
+COMB(bslh, DE_BSLS, LSFT_T(KC_S), KC_C)
+COMB(equal, DE_EQL, LCTL_T(KC_T), KC_D)
+COMB(tilde, DE_TILD, KC_G, KC_V)
+
+//right hand vertical
+COMB(caret, DE_QUOT, KC_J, KC_M)
+COMB(plus, KC_PPLS, KC_L, LCTL_T(KC_N))
+COMB(star, DE_ASTR, KC_U, RSFT_T(KC_E))
+COMB(amps, DE_AMPR, DE_Y, LALT_T(KC_I))
+
+COMB(under, DE_UNDS, KC_M, KC_K)
+COMB(minus, KC_PMNS, LCTL_T(KC_N), KC_H)
+COMB(fslh, DE_SLSH, RSFT_T(KC_E), DE_COMM)
+COMB(pipe, DE_PIPE, LALT_T(KC_I), DE_COLN)

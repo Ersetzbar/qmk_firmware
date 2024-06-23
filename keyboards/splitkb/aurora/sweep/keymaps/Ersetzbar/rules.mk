@@ -13,8 +13,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-DEFAULT_FOLDER = splitkb/aurora/sweep/rev1
 CONVERT_TO=liatris
-COMBO_ENABLE = yes
+
+CONSOLE_ENABLE = yes
+
+VPATH  +=  keyboards/gboards/
+COMBO_ENABLE=yes
+
 CAPS_WORD_ENABLE = yes
 AUTOCORRECT_ENABLE = yes
+KEY_OVERRIDE_ENABLE = yes
+REPEAT_KEY_ENABLE = yes

@@ -1,18 +1,56 @@
-#include "quantum.h"
+#include "print.h"
 #include QMK_KEYBOARD_H
+#include "sendstring_german.h"
+
+#include "keycodes.h"
+
+#include "g/keymap_combo.h"
+#include "keymap.h"
+#include "process_key_override.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-        [0] = LAYOUT_split_3x5_2(KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, LSFT_T(KC_A), LT(5,KC_S), LT(10,KC_D), LT(3,KC_F), KC_G, KC_H, LT(4,KC_J), LT(2,KC_K), LT(6,KC_L), RSFT_T(KC_SCLN), KC_Z, LCTL_T(KC_X), LALT_T(KC_C), KC_V, KC_B, KC_N, KC_M, LALT_T(KC_COMM), LCTL_T(KC_DOT), KC_SLSH, KC_COPY, KC_BSPC, LT(7,KC_SPC), KC_PSTE),
-        [1] = LAYOUT_split_3x5_2(KC_Q, KC_W, KC_F, KC_P, KC_B, KC_J, KC_L, KC_U, KC_Y, KC_SCLN, LSFT_T(KC_A), LT(5,KC_R), LT(10,KC_S), LT(3,KC_T), KC_G, KC_M, LT(4,KC_N), LT(2,KC_E), LT(6,KC_I), RSFT_T(KC_O), KC_Z, LCTL_T(KC_X), LALT_T(KC_C), KC_D, KC_V, KC_K, KC_H, LALT_T(KC_COMM), LCTL_T(KC_DOT), KC_SLSH, KC_COPY, KC_BSPC, LT(7,KC_SPC), KC_PSTE),
-        [2] = LAYOUT_split_3x5_2(RALT(KC_Q), RALT(KC_P), RALT(KC_Y), RALT(KC_S), RALT(KC_5), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_TRNS, KC_TRNS, KC_LGUI, KC_NO, LCTL(KC_LALT), KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
-        [3] = LAYOUT_split_3x5_2(KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_UNDS, KC_PIPE, KC_QUOT, KC_TRNS, KC_CIRC, KC_ASTR, KC_AMPR, KC_NO, KC_TRNS, KC_HASH, KC_TILD, KC_SLSH, KC_DQUO, KC_DLR, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MINS, KC_BSLS, KC_GRV, KC_TRNS, RGB_RMOD, KC_TRNS, KC_TRNS, RGB_MOD),
-        [4] = LAYOUT_split_3x5_2(KC_TRNS, KC_COLN, KC_LT, KC_GT, KC_SCLN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LCBR, KC_RCBR, KC_LPRN, KC_RPRN, KC_AT, KC_TRNS, KC_NO, KC_EQL, KC_PLUS, KC_PERC, KC_TRNS, KC_EXLM, KC_LBRC, KC_RBRC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_VOLD, KC_TRNS, KC_TRNS, KC_VOLU),
-        [5] = LAYOUT_split_3x5_2(KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F7, KC_F8, KC_F9, KC_F10, KC_TRNS, KC_NO, LCTL(KC_LALT), KC_TRNS, KC_TRNS, KC_TRNS, KC_F4, KC_F5, KC_F6, KC_F11, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F1, KC_F2, KC_F3, KC_F12, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
-        [6] = LAYOUT_split_3x5_2(KC_PSLS, KC_7, KC_8, KC_9, KC_PPLS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_0, KC_1, KC_2, KC_3, KC_PMNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NO, KC_TRNS, KC_PAST, KC_4, KC_5, KC_6, KC_PEQL, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS),
-        [7] = LAYOUT_split_3x5_2(KC_TRNS, KC_TRNS, KC_COLN, KC_ESC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_DEL, KC_TRNS, KC_PERC, KC_SLSH, KC_ENT, KC_TRNS, DF(1), KC_LGUI, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_EXLM, KC_TRNS, DF(0), KC_TRNS, RALT_T(KC_COMM), RCTL_T(KC_DOT), QK_BOOT, KC_TRNS, KC_TAB, KC_NO, KC_TRNS),
-        [8] = LAYOUT_split_3x5_2(KC_1, KC_2, KC_3, KC_4, KC_5, LALT(KC_B), KC_NO, KC_NO, KC_NO, DF(0), KC_LSFT, KC_A, KC_W, KC_D, KC_E, KC_I, KC_H, KC_NO, KC_NO, KC_NO, KC_Q, KC_Z, KC_S, KC_X, KC_R, KC_M, KC_NO, KC_NO, KC_NO, KC_NO, LT(9,KC_TAB), KC_SPC, KC_NO, KC_NO),
-        [9] = LAYOUT_split_3x5_2(KC_6, KC_7, KC_8, KC_9, KC_0, KC_NO, KC_NO, KC_NO, KC_NO, DF(0), KC_LSFT, KC_A, KC_W, KC_D, KC_F, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_V, KC_T, KC_S, KC_G, KC_B, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_SPC, KC_NO, KC_NO),
-        [10] = LAYOUT_split_3x5_2(RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, KC_BTN1, KC_WH_U, KC_BTN2, KC_TRNS, KC_TRNS, KC_BTN2, KC_NO, KC_BTN1, KC_TRNS, KC_TRNS, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_TRNS, RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD, KC_WH_L, KC_WH_D, KC_WH_R, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS)
+  [BASE] = LAYOUT_split_3x5_2(
+    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    DE_Y,    DE_QUOT,
+    HM_A,    HM_R,    HM_S,    HM_T,    KC_G,    KC_M,    HM_N,    HM_E,    HM_I,    HM_O,
+    DE_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    DE_COMM, DE_DOT,  DE_QUES,
+                               NAV_SPC, FN_RTN , _______, KC_RSFT
+  ),
+  [NAV] = LAYOUT_split_3x5_2(
+    _______, _______, PRE_WIN, _______, _______, KC_PGUP, KC_BSPC, KC_UP,   KC_DEL,  _______,
+    KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, _______, KC_PGDN, HM_LEFT, HM_DOWN, HM_RGHT, HM_RTRN,
+    _______, _______, _______, _______, _______, KC_INS , KC_TAB , DE_LABK, DE_RABK, _______,
+                               _______, _______, _______, _______
+  ),
+  [FN] = LAYOUT_split_3x5_2(
+    KC_F12,  KC_F7,   KC_F8,   KC_F9,   _______, KC_MPLY, KC_MPRV, KC_VOLU, KC_MNXT, QK_ON,
+    HM_F11,  HM_F4,   HM_F5,   HM_F6,   _______, KC_MUTE, HM_PDSK, HM_VOLD, HM_NDSK, QK_OFF,
+    KC_F10,  KC_F1,   KC_F2,   KC_F3,   _______, PIN_APP, PIN_WIN, DSK_MGR, _______, _______,
+                               _______, _______, _______, _______
+  ),
+  [NUM] = LAYOUT_split_3x5_2(
+    _______, DE_7,    DE_8,    DE_9,    _______, _______, _______, _______, _______, _______,
+    HM_0,    HM_4,    HM_5,    HM_6,    _______, _______, _______, _______, _______, _______,
+    _______, DE_1,    DE_2,    DE_3,    _______, _______, _______, _______, _______, _______,
+                               _______, _______, _______, _______
+  ),
+  [MOUSE] = LAYOUT_split_3x5_2(
+    TO_BASE, TO_BASE, RGB_HUD, RGB_HUI, RGB_MOD, KC_WH_L, KC_WH_D, KC_MS_U, KC_WH_U, KC_WH_R,
+    TO_BASE, TO_BASE, RGB_VAD, RGB_VAI, RGB_TOG, TO_BASE, KC_MS_L, KC_MS_D, KC_MS_R, TO_BASE,
+    TO_BASE, TO_BASE, RGB_SPD, RGB_SPI, RBG_PMD, TO_BASE, KC_BTN4, KC_WH_D, KC_BTN5, TO_BASE,
+                               KC_MS_L, KC_MS_R, TO_BASE, TO_BASE
+  ),
+  [GAME1] = LAYOUT_split_3x5_2(
+    DE_1,    DE_2,    DE_3,    DE_4,    DE_5,    WvW,     XXXXXXX, XXXXXXX, XXXXXXX, TO_BASE,
+    KC_LSFT, KC_A,    KC_W,    KC_D,    KC_E,    KC_I,    KC_H,    XXXXXXX, XXXXXXX, XXXXXXX,
+    KC_Q,    DE_Y,    KC_S,    KC_X,    KC_R,    KC_M,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                               GL2_TAB, KC_SPC,  XXXXXXX, XXXXXXX
+  ),
+  [GAME2] = LAYOUT_split_3x5_2(
+    DE_6,    DE_7,    DE_8,    DE_9,    DE_0,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO_BASE,
+    KC_LSFT, KC_A,    KC_W,    KC_D,    KC_F,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    KC_V,    KC_T,    KC_S,    KC_G,    KC_B,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+                               XXXXXXX, KC_SPC,  XXXXXXX, XXXXXXX
+  ),
 };
 
 void keyboard_pre_init_user(void) {
@@ -20,45 +58,60 @@ void keyboard_pre_init_user(void) {
     writePinHigh(24);
 }
 
-enum combos {
-    GAME_LAYER,
-    GAME_MOUNT,
-    AC_ENABLE,
-    AC_DISABLE,
-    ESC_QW
+const key_override_t question_exclamation_override = ko_make_basic(MOD_MASK_SHIFT, DE_QUES, DE_EXLM);
+const key_override_t sqt_dqt_override = ko_make_basic(MOD_MASK_SHIFT, DE_QUOT, DE_DQUO);
+
+const key_override_t **key_overrides = (const key_override_t *[]){
+	&question_exclamation_override,
+    &sqt_dqt_override,
+	NULL
 };
 
-const uint16_t PROGMEM game_layer[] = {KC_Q, KC_Z, KC_T, COMBO_END};
-const uint16_t PROGMEM game_mount[] = {KC_V, KC_B, COMBO_END};
-const uint16_t PROGMEM ac_enable[] = {KC_Q, KC_E, COMBO_END};
-const uint16_t PROGMEM ac_disable[] = {KC_Q, KC_R, COMBO_END};
-const uint16_t PROGMEM esc_qw[] = {KC_Q, KC_W, COMBO_END};
-
-combo_t key_combos[] = {
-    [GAME_LAYER] = COMBO(game_layer, DF(8)),
-    [GAME_MOUNT] = COMBO(game_mount, KC_F11),
-    [AC_ENABLE] = COMBO(ac_enable, QK_AUTOCORRECT_ON),
-    [AC_DISABLE] = COMBO(ac_disable, QK_AUTOCORRECT_OFF),
-    [ESC_QW] = COMBO(esc_qw, KC_ESC),
-};
+uint16_t get_combo_term(uint16_t index, combo_t *combo) {
+    switch (index) {
+        // Home-row and other tight combos
+        case esc:
+        case ret:
+        case tab:
+        case repeat:
+        case cut:
+        case copy:
+        case paste:
+        case bspc:
+        case del:
+        case lt:
+        case gt:
+        case lpar:
+        case rpar:
+        case lbkt:
+        case rbkt:
+        case lbrc:
+        case rbrc:
+            return COMBO_TERM;
+        default:
+            return COMBO_TERM + 25;
+    }
+}
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     switch (combo_index) {
-        case GAME_MOUNT:
-        case ESC_QW:
-            if (!(layer_state_is(8) || layer_state_is(9))) {
+        case lpar:
+        case rpar:
+        case lbkt:
+        case rbkt:
+            if (layer_state_is(NAV)){
                 return false;
             }
+            break;
+        case lbrc:
+        case rbrc:
+        case lt:
+        case gt:
+            if(!layer_state_is(NAV)){
+                return false;
+            }
+            break;
     }
-    return true;
-}
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case DF(1):
-            set_single_persistent_default_layer(1);
-        case DF(0):
-            set_single_persistent_default_layer(0);
-    }
     return true;
 }
