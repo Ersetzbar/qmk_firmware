@@ -24,7 +24,7 @@ COMB(ret, KC_ENT, KC_F, KC_P)
 COMB(mouse, DF(4), KC_W, DE_L)
 
 COMB(tab, LSA(KC_TAB), LALT_T(KC_R), LSFT_T(KC_S))
-COMB(repeat, QK_REP, LSFT_T(KC_S), LGUI_T(KC_T))
+COMB(repeat, QK_REP, LSFT_T(KC_S), LCTL_T(KC_T))
 
 COMB(cut, LCTL(KC_X), KC_X, KC_D)
 COMB(copy, LCTL(KC_INSERT), KC_C, KC_D)
@@ -61,7 +61,7 @@ COMB(plus, KC_PPLS, KC_L, LCTL_T(KC_N))
 COMB(star, DE_ASTR, KC_U, RSFT_T(KC_E))
 COMB(amps, DE_AMPR, DE_Y, LALT_T(KC_I))
 
-COMB(under, DE_UNDS, KC_M, KC_K)
+SUBS(under, "^", KC_M, KC_K)
 COMB(minus, KC_PMNS, LCTL_T(KC_N), KC_H)
 COMB(fslh, DE_SLSH, RSFT_T(KC_E), DE_COMM)
 COMB(pipe, DE_PIPE, LALT_T(KC_I), DE_COLN)

@@ -46,3 +46,5 @@
 #define TAPPING_TERM 200
 
 #define COMBO_SHOULD_TRIGGER
+
+// #define LAYER_LOCK_IDLE_TIMEOUT 60000  // Turn off after 60 seconds.

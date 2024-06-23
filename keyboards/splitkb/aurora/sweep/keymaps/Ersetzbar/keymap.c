@@ -1,19 +1,19 @@
-#include "print.h"
 #include QMK_KEYBOARD_H
 #include "sendstring_german.h"
 
-#include "keycodes.h"
-
 #include "g/keymap_combo.h"
-#include "keymap.h"
 #include "process_key_override.h"
+
+#include "custom_keycodes.h"
+
+#include "features/layermodes.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT_split_3x5_2(
     KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    DE_Y,    DE_QUOT,
     HM_A,    HM_R,    HM_S,    HM_T,    KC_G,    KC_M,    HM_N,    HM_E,    HM_I,    HM_O,
     DE_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    DE_COMM, DE_DOT,  DE_QUES,
-                               NAV_SPC, FN_RTN , _______, KC_RSFT
+                               NAV_SPC, FN_RTN , NUMWORD, LT(NUM, KC_G)
   ),
   [NAV] = LAYOUT_split_3x5_2(
     _______, _______, PRE_WIN, _______, _______, KC_PGUP, KC_BSPC, KC_UP,   KC_DEL,  _______,
@@ -67,6 +67,9 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 	NULL
 };
 
+
+
+
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     switch (index) {
         // Home-row and other tight combos
@@ -93,6 +96,22 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     }
 }
 
+bool get_combo_must_tap(uint16_t index, combo_t *combo) {
+    switch (index) {
+        case del:
+        case bspc:
+        // case lpar:
+        // case rpar:
+        // case lbrc:
+        // case rbrc:
+        // case rbkt:
+        // case lbtk:
+            return false;
+        default:
+            return true;
+    }
+}
+
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     switch (combo_index) {
         case lpar:
@@ -111,6 +130,25 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
                 return false;
             }
             break;
+    }
+    if (GAME1 == get_highest_layer(default_layer_state)) {
+        switch (combo_index) {
+            case gmount: return true;
+        }
+        return false;
+    }
+
+    return true;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_num_word(keycode, record)) {
+        return false;
+    }
+    switch (keycode) {
+        case NUMWORD:
+            process_num_word_activation(record);
+            return false;
     }
 
     return true;

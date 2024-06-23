@@ -24,3 +24,6 @@ CAPS_WORD_ENABLE = yes
 AUTOCORRECT_ENABLE = yes
 KEY_OVERRIDE_ENABLE = yes
 REPEAT_KEY_ENABLE = yes
+
+# SRC += features/layer_lock.c
+SRC += features/layermodes.c

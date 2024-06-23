@@ -14,9 +14,55 @@ enum layers {
   GAME2,
 };
 
-enum custom_keycodes{
-    Game
+enum custom_keycodes {
+    // Direct dead keys ~`^
+    TILD = QK_USER,
+    GRV,
+    CIRC,
+
+    // Vim
+    SAVE_VIM,
+    VIM_VS,
+    VIM_SP,
+    CLOSE_WIN,
+
+    // Multiple chars
+    QU,
+    SC,
+    AT_U,
+
+    // É
+    E_ACUT,
+
+    // Custom keycodes for instant processing for NUMWORD
+    NUM_G,
+
+    // Custom Win + Alt for window toggling on Windows
+    WIN_ALT,
+
+    // Instant oneshot mods
+    OS_SHFT,
+    OS_CTRL,
+    OS_ALT,
+    OS_GUI,
+
+    // Smart caps lock and layers that turn off on certain keys
+    CAPSWORD,
+    NUMWORD,
+
+    // Layer management
+    CANCEL, // Cancel SYMWORD and NUMWORD
+    CLEAR,  // Clear all WORD, one-shots and reset to BASE
+
+    // Instant leader key
+    LEADER,
+
+    // Repeat keys
+    REPEAT,
+    REV_REP,
 };
+
+#define xxxxxxx KC_NO
 
 //div keys
 #define PRE_WIN LSFT(KC_TAB)  // previous window
